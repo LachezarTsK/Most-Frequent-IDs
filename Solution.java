@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class Solution {
@@ -6,11 +7,7 @@ public class Solution {
     private record Component(int ID, long frequency) {}
 
     public long[] mostFrequentIDs(int[] IDs, int[] changeInFrequency) {
-        int maxID = 0;
-        for (int ID : IDs) {
-            maxID = Math.max(maxID, ID);
-        }
-
+        int maxID = Arrays.stream(IDs).max().getAsInt();
         long[] frequencyIDs = new long[maxID + 1];
         long[] resultMostFrequentIDsPerTimeStamp = new long[IDs.length];
         PriorityQueue<Component> maxHeap = new PriorityQueue<>((x, y) -> Long.compare(y.frequency, x.frequency));
